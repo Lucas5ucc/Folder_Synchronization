@@ -10,8 +10,7 @@ def sync_folder(original_folder, replica_folder, log_file):
     if not os.path.exists(original_folder):
         print(f"Source folder '{original_folder}' does not exist.")
         return
-
-    # If source folder exist but the replicza one don't this block of code will create it
+        
     if not os.path.exists(replica_folder):
         os.makedirs(replica_folder)
 
@@ -20,14 +19,12 @@ def sync_folder(original_folder, replica_folder, log_file):
         relative_path = os.path.relpath(root, original_folder)
         replica_path = os.path.join(replica_folder, relative_path)
 
-        # Synchronize original and replica directories
         for directory in dirs:
             replica_dir = os.path.join(replica_path, directory)
 
             if not os.path.exists(replica_dir):
                 os.makedirs(replica_dir)
 
-        # Synchronize original and replica files
         for file in files:
             source_file = os.path.join(root, file)
             replica_file = os.path.join(replica_path, file)
